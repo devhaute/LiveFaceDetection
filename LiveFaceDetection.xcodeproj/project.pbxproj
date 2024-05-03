@@ -11,6 +11,7 @@
 		08A8546B2BE4B18200250977 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A8546A2BE4B18200250977 /* ContentView.swift */; };
 		08A8546D2BE4B18200250977 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A8546C2BE4B18200250977 /* Assets.xcassets */; };
 		08A854702BE4B18200250977 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A8546F2BE4B18200250977 /* Preview Assets.xcassets */; };
+		08A854792BE4B6F600250977 /* VideoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A854782BE4B6F600250977 /* VideoCaptureViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		08A8546A2BE4B18200250977 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		08A8546C2BE4B18200250977 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08A8546F2BE4B18200250977 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		08A854782BE4B6F600250977 /* VideoCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCaptureViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				08A854682BE4B18200250977 /* LiveFaceDetectionApp.swift */,
 				08A8546A2BE4B18200250977 /* ContentView.swift */,
+				08A854782BE4B6F600250977 /* VideoCaptureViewController.swift */,
 				08A8546C2BE4B18200250977 /* Assets.xcassets */,
 				08A8546E2BE4B18200250977 /* Preview Content */,
 			);
@@ -139,6 +142,7 @@
 			files = (
 				08A8546B2BE4B18200250977 /* ContentView.swift in Sources */,
 				08A854692BE4B18200250977 /* LiveFaceDetectionApp.swift in Sources */,
+				08A854792BE4B6F600250977 /* VideoCaptureViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +279,8 @@
 				DEVELOPMENT_TEAM = 2H58KZ6DBP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is required for facical recognition";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone is required for recording video.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +310,8 @@
 				DEVELOPMENT_TEAM = 2H58KZ6DBP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is required for facical recognition";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone is required for recording video.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
