@@ -1,5 +1,5 @@
 //
-//  VideoCaptureViewController.swift
+//  FaceCaptureViewController.swift
 //  LiveFaceDetection
 //
 //  Created by chanho on 5/3/24.
@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import Vision
 
-class VideoCaptureViewController: UIViewController {
+class FaceCaptureViewController: UIViewController {
     private var captureDevice: AVCaptureDevice?
     private var previewLayer: AVCaptureVideoPreviewLayer?
     
@@ -24,10 +24,14 @@ class VideoCaptureViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getCameraFrames()
-        captureSession.startRunning()
+        
+        Task {
+            captureSession.startRunning()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        print("viewDidDisappear")
         captureSession.stopRunning()
     }
     
@@ -77,9 +81,11 @@ class VideoCaptureViewController: UIViewController {
     }
 }
 
-extension VideoCaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension FaceCaptureViewController {
     private func getCameraFrames() {
-        videoOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString): NSNumber(value: kCVPixelFormatType_32BGRA)] as [String: Any]
+        videoOutput.videoSettings = [
+            (kCVPixelBufferPixelFormatTypeKey as NSString): NSNumber(value: kCVPixelFormatType_32BGRA)
+        ] as [String: Any]
         videoOutput.alwaysDiscardsLateVideoFrames = true
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "camera_frame_processing_queue"))
         if !captureSession.outputs.contains(videoOutput) {
@@ -93,16 +99,6 @@ extension VideoCaptureViewController: AVCaptureVideoDataOutputSampleBufferDelega
         connection.videoOrientation = .portrait
     }
     
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let frame = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            return
-        }
-        
-        detectFace(image: frame)
-    }
-}
-
-extension VideoCaptureViewController {
     private func detectFace(image: CVPixelBuffer) {
         let detectCaptureQualityRequest = VNDetectFaceCaptureQualityRequest()
         detectCaptureQualityRequest.revision = VNDetectFaceCaptureQualityRequestRevision2   // iOS 14.0+
@@ -111,7 +107,7 @@ extension VideoCaptureViewController {
         do {
             try handler.perform([detectCaptureQualityRequest])
             
-            if let results = detectCaptureQualityRequest.results as? [VNFaceObservation] {
+            if let results = detectCaptureQualityRequest.results {
                 for face in results {
                     print("Face capture quality score: \(face.faceCaptureQuality ?? 0)")
                 }
@@ -119,5 +115,15 @@ extension VideoCaptureViewController {
         } catch {
             print("Failed to perform detection: \(error.localizedDescription)")
         }
+    }
+}
+
+extension FaceCaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let frame = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        
+        detectFace(image: frame)
     }
 }
