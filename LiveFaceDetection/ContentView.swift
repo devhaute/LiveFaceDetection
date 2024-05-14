@@ -9,7 +9,7 @@ import SwiftUI
 
 enum AppPath: Hashable {
     case detectFace
-    case ocr
+    case detectFace2
 }
 
 struct ContentView: View {
@@ -25,18 +25,17 @@ struct ContentView: View {
                 }
                 
                 Button {
-                    paths.append(AppPath.ocr)
+                    paths.append(AppPath.detectFace2)
                 } label: {
-                    Text("ocr")
+                    Text("detectFace2")
                 }
             }
             .navigationDestination(for: AppPath.self) { path in
                 switch path {
                 case .detectFace:
                     FaceCaptureViewControllerWrapper()
-                case .ocr:
-                    Text("Ocr")
-//                    OCRViewControllerWrapper()
+                case .detectFace2:
+                    DetectFaceView2()
                 }
             }
         }
