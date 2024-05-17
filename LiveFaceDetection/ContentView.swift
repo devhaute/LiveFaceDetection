@@ -10,6 +10,7 @@ import SwiftUI
 enum AppPath: Hashable {
     case detectFace
     case detectFace2
+    case detectFace3
 }
 
 struct ContentView: View {
@@ -29,6 +30,12 @@ struct ContentView: View {
                 } label: {
                     Text("detectFace2")
                 }
+                
+                Button {
+                    paths.append(AppPath.detectFace3)
+                } label: {
+                    Text("detectFace3")
+                }
             }
             .navigationDestination(for: AppPath.self) { path in
                 switch path {
@@ -36,6 +43,8 @@ struct ContentView: View {
                     FaceCaptureViewControllerWrapper()
                 case .detectFace2:
                     DetectFaceView2()
+                case .detectFace3:
+                    CompareFaceView()
                 }
             }
         }

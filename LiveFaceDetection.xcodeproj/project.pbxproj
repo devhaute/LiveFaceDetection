@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		08193D842BEA0652005C7F29 /* DetectFaceView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08193D832BEA0652005C7F29 /* DetectFaceView2.swift */; };
 		0883600D2BF343A80098EC45 /* DetectFaceCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883600C2BF343A80098EC45 /* DetectFaceCameraView.swift */; };
+		088360102BF35B680098EC45 /* CompareFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883600F2BF35B680098EC45 /* CompareFaceView.swift */; };
 		08A854692BE4B18200250977 /* LiveFaceDetectionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A854682BE4B18200250977 /* LiveFaceDetectionApp.swift */; };
 		08A8546B2BE4B18200250977 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A8546A2BE4B18200250977 /* ContentView.swift */; };
 		08A8546D2BE4B18200250977 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A8546C2BE4B18200250977 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		08193D832BEA0652005C7F29 /* DetectFaceView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectFaceView2.swift; sourceTree = "<group>"; };
 		0883600C2BF343A80098EC45 /* DetectFaceCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectFaceCameraView.swift; sourceTree = "<group>"; };
+		0883600F2BF35B680098EC45 /* CompareFaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareFaceView.swift; sourceTree = "<group>"; };
 		08A854652BE4B18200250977 /* LiveFaceDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveFaceDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A854682BE4B18200250977 /* LiveFaceDetectionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveFaceDetectionApp.swift; sourceTree = "<group>"; };
 		08A8546A2BE4B18200250977 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 			path = DetectFaceView2;
 			sourceTree = "<group>";
 		};
+		0883600E2BF35B290098EC45 /* DetectFaceView3 */ = {
+			isa = PBXGroup;
+			children = (
+				0883600F2BF35B680098EC45 /* CompareFaceView.swift */,
+			);
+			path = DetectFaceView3;
+			sourceTree = "<group>";
+		};
 		08A8545C2BE4B18200250977 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +80,7 @@
 				08A8546A2BE4B18200250977 /* ContentView.swift */,
 				08A854782BE4B6F600250977 /* FaceCaptureViewController.swift */,
 				0883600B2BF343920098EC45 /* DetectFaceView2 */,
+				0883600E2BF35B290098EC45 /* DetectFaceView3 */,
 				08A8546C2BE4B18200250977 /* Assets.xcassets */,
 				08A8546E2BE4B18200250977 /* Preview Content */,
 			);
@@ -159,6 +170,7 @@
 				08193D842BEA0652005C7F29 /* DetectFaceView2.swift in Sources */,
 				08A854692BE4B18200250977 /* LiveFaceDetectionApp.swift in Sources */,
 				08A854792BE4B6F600250977 /* FaceCaptureViewController.swift in Sources */,
+				088360102BF35B680098EC45 /* CompareFaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

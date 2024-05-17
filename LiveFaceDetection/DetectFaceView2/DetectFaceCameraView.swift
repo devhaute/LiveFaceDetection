@@ -63,22 +63,44 @@ extension DetectFaceCameraView {
             self.faceDetected = faceDetected
         }
         
+//        func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+//            guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+//                return
+//            }
+//            
+//            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+//            let context = CIContext()
+//            let options: [String: Any] = [CIDetectorAccuracy: CIDetectorAccuracyHigh]
+//            let faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: context, options: options)
+//            let faces = faceDetector?.features(in: ciImage) ?? []
+//            
+//            if !faces.isEmpty {
+//                Task { @MainActor in
+//                    faceDetected()
+//                }
+//            }
+//        }
+        
         func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
             guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
                 return
             }
             
-            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
-            let context = CIContext()
-            let options: [String: Any] = [CIDetectorAccuracy: CIDetectorAccuracyHigh]
-            let faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: context, options: options)
-            let faces = faceDetector?.features(in: ciImage) ?? []
-            
-            if !faces.isEmpty {
-                Task { @MainActor in
-                    faceDetected()
+            let request = VNDetectFaceRectanglesRequest { request, error in
+                guard error == nil else {
+                    print("Face detection error: \(error!.localizedDescription)")
+                    return
+                }
+                
+                if let results = request.results, !results.isEmpty {
+                    DispatchQueue.main.async {
+                        self.faceDetected()
+                    }
                 }
             }
+            
+            let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
+            try? handler.perform([request])
         }
     }
     
